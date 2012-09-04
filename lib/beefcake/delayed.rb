@@ -15,9 +15,14 @@ module Beefcake
       (@object) ? @object.encode : @bytes
     end
 
+    def class_from_string(str)
+      str.split('::').inject(Object) do |mod, class_name|
+        mod.const_get(class_name)
+      end
+    end
+
     def __object__
-      puts @klass
-      @object = Object.const_get(@klass).decode(@bytes.dup) unless @object
+      @object = class_from_string(@klass).decode(@bytes.dup) unless @object
       @object
     end
 
