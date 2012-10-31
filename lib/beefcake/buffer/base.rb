@@ -79,7 +79,7 @@ module Beefcake
     def read(n)
       case n
       when Class
-        n.decode(read_string)
+        n.decode(read_bytes)
         #Delayed.new(n.to_s, read_bytes)
       when Symbol
         __send__("read_#{n}")

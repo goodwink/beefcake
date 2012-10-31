@@ -13,9 +13,12 @@ module Beefcake
     end
 
     def read_string
+      read(read_uint64).force_encoding("UTF-8")
+    end
+
+    def read_bytes
       read(read_uint64)
     end
-    alias :read_bytes :read_string
 
     def read_fixed32
       bytes = read(4)
