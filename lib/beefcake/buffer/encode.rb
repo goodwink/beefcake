@@ -105,11 +105,11 @@ module Beefcake
     end
 
     def append_string(s)
-      s = s.to_s.force_encoding('BINARY')
-      append_uint64(s.length)
-      self << s
+      temp = s.dup.to_s.force_encoding('BINARY')
+      append_uint64(temp.length)
+      self << temp
     end
-    
+
     def append_bytes(s)
       append_uint64(s.length)
       self << s
